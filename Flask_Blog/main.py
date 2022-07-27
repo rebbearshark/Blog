@@ -11,6 +11,7 @@ from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
 import bleach
+import os
 
 # for ease of use, make sure the first created user is the admin account, There is a database in this repository to show you how this works. Passwords are the same as names in the database.
 
@@ -269,4 +270,6 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # For HEROKU
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
